@@ -1,28 +1,28 @@
+getRandomColor();
+RandomMouseMoveColor();
 
-var r = 0;
-var g = 50;
-var b=255;
-
-// INITIALIZE ALL YOUR VARIABLES
-// Ideally you would create 3 variables. red blue green or r, g, b
-
-
-function setup(){
-
-  createCanvas(1200,400);
+function getRandomColor() {
+document.body.style.background = "#"+((1<<24)*Math.random()|0).toString(16);
 }
 
+function RandomMouseMoveColor() {
+var $win = $(window),
+ w = 0,h = 0,
+ rgb = [],
+ getWidth = function() {
+     w = $win.width();
+     h = $win.height();
+ };
 
-function draw(){
+$win.resize(getWidth).mousemove(function(e) {
 
-  // change the value of Red based on the mouse movement about the X axis
-  // change the value of Green based on the mouse movement about the X axis
-  // change the value of Blue based on the mouse movement about the X axis
+ rgb = [
+     Math.round(e.pageX/w * 255),
+     Math.round(e.pageY/h * 255),
+     150
+ ];
 
-  // Use the map() function to do so. 
+ $(document.body).css('background','rgb('+rgb.join(',')+')');
 
-  // Pass the values to the background() function you have learnt previously.
-
-  // Create an ellipse that will move around with you mouse about the X axis.
-  // Remember to fill the canvas with white paint before creating the ellipse.
+}).resize();
 }
